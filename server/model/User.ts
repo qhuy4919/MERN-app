@@ -1,3 +1,4 @@
+export { };
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -10,7 +11,7 @@ const UserSchema = new Schema({
     password: {
         type: String,
         require: true,
-    } ,
+    },
     createAt: {
         type: Date,
         default: Date.now

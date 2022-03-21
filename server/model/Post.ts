@@ -1,8 +1,8 @@
-export {}
+export { };
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Post = {
+const PostSchema = {
     title: {
         type: String,
         require: true,
@@ -18,9 +18,9 @@ const Post = {
         enum: ['TO LEARN', 'LEARNING', 'LEARNED'],
     },
     user: {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: 'user',
     },
 };
 
-module.exports = mongoose.module('post', Post);
+module.exports = mongoose.model('post', PostSchema);

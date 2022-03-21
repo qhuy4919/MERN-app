@@ -2,6 +2,29 @@ POST  http://localhost:1234/api/auth/register
 Content-Type: application/json
 
 {
-    "username": "user12",
-    "password": "user12"
+    "username": "admin",
+    "password": "admin"
+}
+
+###
+
+POST http://localhost:1234/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+###
+POST http://localhost:1234/api/post
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjM2ZjNjYzg5NDM5MzJjMmJjODY0MjUiLCJpYXQiOjE2NDc3Njg1MzF9.GwqH5BzMML6aT0eB4ZsUJQ3is8zJcD5Z2AcP83qTy-4
+
+
+{
+    "title": "MERN-app",
+    "description": "fisrt app with MERN",
+    "url": "google.com",
+    "status": "LEARNED"
 }
