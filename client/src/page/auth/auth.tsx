@@ -1,5 +1,5 @@
 import React from 'react';
-import { Login } from '@root/component';
+import { Login } from 'component';
 
 type AuthProps = {
     authRoute: string,
