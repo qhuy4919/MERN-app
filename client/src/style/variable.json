@@ -1,0 +1,32 @@
+{
+    "spacing": {
+        "_default": "md",
+        "_scale": "spacingScale",
+        "_namespace": "spacing",
+        "none": "0",
+        "px": "1px",
+        "xxs": "2px",
+        "xs": "5px",
+        "sm": "10px",
+        "md": "15px",
+        "lg": "20px",
+        "xl": "30px",
+        "2xl": "40px",
+        "3xl": "50px",
+        "4xl": "60px",
+        "5xl": "70px",
+        "6xl": "80px",
+        "neg-px": "-1px",
+        "neg-xxs": "-2px",
+        "neg-xs": "-5px",
+        "neg-sm": "-10px",
+        "neg-md": "-15px",
+        "neg-lg": "-20px",
+        "neg-xl": "-30px",
+        "neg-2xl": "-40px",
+        "neg-3xl": "-50px",
+        "neg-4xl": "-60px",
+        "neg-5xl": "-70px",
+        "neg-6xl": "-80px"
+      }
+}
