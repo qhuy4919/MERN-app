@@ -1,7 +1,8 @@
 export { }
 require('dotenv').config();
 const express = require('express');
-const router = express.Router();
+const { body, validationResult } = require('express-validator')
+ const router = express.Router();
 //
 const User = require('../model/User');
 const argon2 = require('argon2');
@@ -11,14 +12,20 @@ const jwt = require('jsonwebtoken');
 // @desc Register user
 // @access public
 
-router.post('/register', async (req: any, res: any) => {
+router.post('/register',  
+    body('username').notEmpty(),
+    body('password').notEmpty().isLength({min: 5,}),
+    async (req: any, res: any) => {
+        
     const { username, password } = req.body;
 
     // simple validate
-    if (!username || !password) {
-        return res.status(400)
-            .json({ sucess: false, message: 'Missing usrename and/or password' });
+
+    const error = validationResult(req);
+    if(!error.isEmpty()) {
+        return res.status(400).json({success: false, message: 'Invalid username and/or passowrd'});
     }
+    
     try {
         //check for exstring user
         const user = await User.findOne({ username });
@@ -56,13 +63,18 @@ router.post('/register', async (req: any, res: any) => {
 //@router POST api/auth/login
 //@desc Login user
 //@access public
-router.post('/login', async (req: any, res: any) => {
+router.post('/login',  
+    body('username').notEmpty(),
+    body('password').notEmpty().isLength({min: 5,}),
+    async (req: any, res: any) => {
+
     const { username, password } = req.body;
     //simple validation
-    if (!username || !password)
-        return res
-            .status(400)
-            .json({ success: false, message: 'Missing username and/or password' });
+    const error = validationResult(req);
+    if(!error.isEmpty()) {
+        return res.status(400).json({success: false, message: 'Invalid username and/or passowrd'});
+    }
+    
     try {
         const user = await User.findOne({ username });
         if (!user) {
