@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "paths": {
-      "@root/*": [
-        "*"
-      ]
-    },
     "target": "es5",
     "lib": [
       "dom",
@@ -19,7 +14,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -32,7 +27,9 @@
       "../../node_modules/@types",
       "./node_modules/@types",
       "./src/types"
-    ]
+    ],
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true
   },
   "include": [
     "src"

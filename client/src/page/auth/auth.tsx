@@ -1,5 +1,6 @@
 import React from 'react';
-import { Login } from 'component';
+import { Login, Register } from 'component';
+import './auth.scss';
 
 type AuthProps = {
     authRoute: string,
@@ -9,10 +10,9 @@ export function Auth(props: AuthProps) {
     const { authRoute } = props;
 
     return (
-        <div className="">
-            {
-                authRoute === 'Login' && <Login />
-            }
+        <div className="auth-panel">
+            {authRoute === 'login' && <Login />}
+            {authRoute === 'register' && <Register/>}
         </div>
     );
 }
