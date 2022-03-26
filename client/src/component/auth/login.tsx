@@ -1,5 +1,5 @@
-import React from 'react'
-import { Form, Input, Button, Checkbox } from 'antd'
+import React from 'react';
+import { Form, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
@@ -8,7 +8,7 @@ export function Login() {
 
     const onResetField = () => {
         form.resetFields();
-    }
+    };
     return (
         <div className="form-panel">
             <div className="form-header">
@@ -51,7 +51,7 @@ export function Login() {
                     </Button>
                 </Form.Item>
             </Form>
-            <p>Don't have account? <Link to={'/register'}><Button type='link' style={{padding: '0'}}>register</Button></Link></p>
+            <p>Don&apos;t have account? <Link to={'/register'}><Button type='link' style={{padding: '0'}}>register</Button></Link></p>
         </div>
     );
 }

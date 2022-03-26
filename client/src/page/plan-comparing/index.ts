@@ -1,1 +1,0 @@
-export { ComparingTable } from './plan-comparing';

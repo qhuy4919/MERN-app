@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './not-found.scss';
 export function NotFound() {
   return (
@@ -13,5 +13,5 @@ export function NotFound() {
             <li><a href="#support">Liên hệ hỗ trợ</a></li>
         </ul>
     </div>
-  )
+  );
 }

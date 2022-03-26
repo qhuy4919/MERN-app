@@ -1,5 +1,5 @@
-import React from 'react'
-import { Form, Input, Button } from 'antd'
+import React from 'react';
+import { Form, Input, Button } from 'antd';
 import './style.scss';
 
 
@@ -59,5 +59,5 @@ export function Register() {
         </Form.Item>
     </Form>
 </div>
-  )
+  );
 }
