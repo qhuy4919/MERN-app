@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 
@@ -58,6 +59,7 @@ export function Register() {
             </Button>
         </Form.Item>
     </Form>
+    <p>already have account? <Link to='/login'><Button type='link'>login</Button></Link></p>
 </div>
   );
 }
