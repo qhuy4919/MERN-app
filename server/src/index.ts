@@ -8,7 +8,7 @@ import { createServer } from 'http';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import { GreetingRosolver } from './resolver/greeting';
+import { GreetingRosolver, UserResolver } from './resolver';
 require('dotenv').config();
 
 //
@@ -34,7 +34,7 @@ const main = async () => {
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             validate: false,
-            resolvers: [GreetingRosolver],
+            resolvers: [GreetingRosolver, UserResolver],
         }),
         plugins: [
             ApolloServerPluginDrainHttpServer({ httpServer }),

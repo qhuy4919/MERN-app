@@ -1,15 +1,16 @@
-import { Mutation, Resolver } from "type-graphql";
-import { RegisterInput } from '../type';
+import { Mutation, Resolver, Arg } from "type-graphql";
+import { LoginInput, RegisterInput, UserMutaionResponse } from '../type';
 import { User } from '../entity';
+import argon2 from 'argon2';
+import { createToken } from '../util/token'
 
 @Resolver()
 export class UserResolver {
-
-
-    @Mutation()
+    @Mutation(_return => UserMutaionResponse)
     async register(
+        @Arg('registerInput')
         registerInput: RegisterInput
-    ): Promise<any> {
+    ): Promise<UserMutaionResponse> {
         const { username, password } = registerInput;
 
         const existingUser = await User.findOne({ username });
@@ -20,6 +21,57 @@ export class UserResolver {
                 success: false,
                 message: 'User existing'
             }
+        }
+
+        const hashPassword = await argon2.hash(password);
+
+        const newUser = User.create({
+            username,
+            password: hashPassword,
+        });
+
+        await newUser.save();
+
+        return {
+            code: 200,
+            success: true,
+            message: 'User registration successful',
+            user: newUser
+        }
+    }
+
+    @Mutation(_return => UserMutaionResponse)
+    async login(
+        @Arg('loginInput')
+        { username, password }: LoginInput
+    ): Promise<UserMutaionResponse> {
+
+        const existingUser = await User.findOne({ username });
+
+        if (!existingUser) {
+            return {
+                code: 400,
+                success: false,
+                message: 'User not found'
+            }
+        }
+
+        const isPasswordValid = argon2.verify(existingUser.password, password);
+
+        if (!isPasswordValid) {
+            return {
+                code: 400,
+                success: false,
+                message: 'Password invalid'
+            }
+        }
+
+        return {
+            code: 200,
+            success: true,
+            message: 'login successful',
+            user: existingUser,
+            token: createToken(existingUser)
         }
     }
 
