@@ -30,6 +30,7 @@ const main = async () => {
     const app = express();
     const httpServer = createServer(app);
 
+    //create graphQL server
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             validate: false,
