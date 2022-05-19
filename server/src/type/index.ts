@@ -1,3 +1,4 @@
 export { RegisterInput } from './register-input';
 export { LoginInput } from './login-input';
-export { UserMutaionResponse } from './user-mutaion';
+export { Context } from './context';
+export * from './user';

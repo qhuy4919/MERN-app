@@ -45,7 +45,6 @@ export class UserResolver {
         @Arg('loginInput')
         { username, password }: LoginInput
     ): Promise<UserMutaionResponse> {
-
         const existingUser = await User.findOne({ username });
 
         if (!existingUser) {
@@ -56,7 +55,7 @@ export class UserResolver {
             }
         }
 
-        const isPasswordValid = argon2.verify(existingUser.password, password);
+        const isPasswordValid = await argon2.verify(existingUser.password, password);
 
         if (!isPasswordValid) {
             return {
@@ -74,5 +73,6 @@ export class UserResolver {
             token: createToken(existingUser)
         }
     }
+
 
 }

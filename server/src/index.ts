@@ -2,13 +2,14 @@
 import { createConnection } from 'typeorm';
 import 'reflect-metadata';
 import { normalize, resolve } from 'path';
-import { User } from './entity';
+import { User, Card } from './entity';
 import express from 'express';
 import { createServer } from 'http';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { ApolloServerPluginDrainHttpServer, ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import { GreetingRosolver, UserResolver } from './resolver';
+import { CardRosolver, UserResolver } from './resolver';
+import { Context } from '@root/type';
 require('dotenv').config();
 
 //
@@ -21,7 +22,7 @@ const main = async () => {
         database: 'MERN-app',
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
-        entities: [User],
+        entities: [User, Card],
         logging: true,
         synchronize: true,
     })
@@ -34,12 +35,13 @@ const main = async () => {
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             validate: false,
-            resolvers: [GreetingRosolver, UserResolver],
+            resolvers: [CardRosolver, UserResolver],
         }),
         plugins: [
             ApolloServerPluginDrainHttpServer({ httpServer }),
             ApolloServerPluginLandingPageGraphQLPlayground
         ],
+        context: ({ req, res }: Context) => ({ req, res })
 
     })
     await apolloServer.start();

@@ -1,2 +1,2 @@
-export { GreetingRosolver } from './greeting';
+export { CardRosolver } from './card';
 export { UserResolver } from './user';
