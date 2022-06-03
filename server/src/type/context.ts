@@ -5,5 +5,5 @@ import { UserAuthPayload } from './user';
 export interface Context {
     req: Request,
     res: Response,
-    user: Pick<UserAuthPayload, 'userId'>
+    user: Partial<UserAuthPayload>
 }

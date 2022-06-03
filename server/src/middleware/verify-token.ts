@@ -14,8 +14,7 @@ export const verifyToken: MiddlewareFn<Context> = ({ context }, next) => {
         }
 
         const decoded = verify(token, process.env.ACCESS_TOKEN_SECRET as Secret) as UserAuthPayload;
-        context.user.userId = decoded.userId;
-
+        context.user = decoded;
 
         return next();
 

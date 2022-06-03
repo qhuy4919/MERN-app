@@ -1,7 +1,7 @@
 
 import { createConnection } from 'typeorm';
 import 'reflect-metadata';
-import { normalize, resolve } from 'path';
+import { normalize } from 'path';
 import { User, Card } from './entity';
 import express from 'express';
 import { createServer } from 'http';
