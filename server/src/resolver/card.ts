@@ -77,4 +77,19 @@ export class CardRosolver {
         }
     }
 
+    // @Mutation(_return => Boolean)
+    // @UseMiddleware(verifyToken)
+    // async deleteCard(
+    //     @Arg('CardId')
+    //     { CardId }: { CardId: string }
+    // ): Promise<Boolean> {
+
+    //     try {
+    //         return true;
+
+    //     } catch (error) {
+    //         return false
+    //     }
+    // }
+
 }

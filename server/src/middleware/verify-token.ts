@@ -1,5 +1,5 @@
 import { MiddlewareFn } from "type-graphql";
-import { Context, UserAuthPayload } from "@root/type";
+import { Context, UserAuthPayload } from "../type";
 import { AuthenticationError } from "apollo-server-core";
 import { Secret, verify } from 'jsonwebtoken';
 
