@@ -14,6 +14,8 @@ require('dotenv').config();
 
 //
 const port = normalize(process.env.PORT || "1234");
+const ip = require("ip");
+
 const main = async () => {
     await createConnection({
         type: 'postgres',
@@ -50,9 +52,10 @@ const main = async () => {
 
     const PORT = process.env.PORT || 4000;
 
-    await new Promise(resolve => httpServer.listen({ port: PORT }, resolve as () => void));
+    await new Promise(resolve => httpServer.listen({ port: PORT, hostname: '0.0.0.0' }, resolve as () => void));
 
     console.log(`server running on port ${PORT}. graphQL endpoint: http://localhost:${PORT}${apolloServer.graphqlPath}`)
+    console.log('current IP address: ', ip.address());
 }
 
 main().catch(error => console.log('ERROR STARTING SERVER: ', error))
